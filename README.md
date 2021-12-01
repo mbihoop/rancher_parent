@@ -5,6 +5,8 @@ and kim.
 
 This is fine for me, but when using rancher desktop, it's an extra bit of complexity which impedes adoption.
 
+# Workaround for two different commands to build containers
+
 ```
 #!/bin/bash
 
