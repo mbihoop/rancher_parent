@@ -1,0 +1,3 @@
+%{
+  "rancher_child": {:git, "git@github.com:mbihoop/rancher_child.git", "0d044571fe76f66f1ce671027e8716bc140af6d5", [branch: "main"]},
+}

@@ -1,21 +1,23 @@
 # RancherParent
 
-**TODO: Add description**
+For building using ssh-agent I needed to create the following script to switch between using docker
+and kim.
 
-## Installation
+This is fine for me, but when using rancher desktop, it's an extra bit of complexity which impedes adoption.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `rancher_parent` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:rancher_parent, "~> 0.1.0"}
-  ]
-end
 ```
+#!/bin/bash
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/rancher_parent](https://hexdocs.pm/rancher_parent).
+# use nerdctl for all docker commands except build, for build, we need to use kim (which uses buildkit)
 
+if [[ $# > 0 ]]; 
+then 
+	if [[ $1 == "build" ]];
+	then 
+	shift 
+	exec kim build $@ 
+else 
+	exec nerdctl $@ ;
+	fi
+fi 
+```
